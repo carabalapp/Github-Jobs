@@ -1,20 +1,3 @@
-/* *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body{
-    background-image: url(/img/jung-ho-park-om4HyUb_3m8-unsplash.jpg);
-    background-image: no-repeat;
-    background-repeat: no-repeat;
-    background-image: fixed;
-    background-image: center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-} */
 body{
     /* Para que funcione correctamente en Smartphones y Tablets */
     height:100vh;
