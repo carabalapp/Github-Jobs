@@ -4,7 +4,7 @@ body{
 }
 body {
     /* Ruta relativa o completa a la imagen */
-    background-image: url(/img/jung-ho-park-om4HyUb_3m8-unsplash.jpg);
+    background-image: url(/Github-Jobs/img/jung-ho-park-om4HyUb_3m8-unsplash.jpg);
     /* Centramos el fondo horizontal y verticalmente */
     background-position: center center;
     /* El fonde no se repite */
