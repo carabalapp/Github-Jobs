@@ -24,7 +24,7 @@ function consultarAPI(buscar){
     const urlAPI = `https://jobs.github.com/positions.json?search=${buscar}`
     const url = `https://api.allorigins.win/get?url=${ encodeURIComponent (urlAPI) }`
     axios.get(url)
-    .then(respuesta => console.log(JSON.parse(respuesta.data.contents)))
+    .then(respuesta => mostrarTrabajos(JSON.parse(respuesta.data.contents)))
 
 }
 
@@ -39,4 +39,27 @@ function mostrarAlerta(msg){
             alerta.remove() 
         },3000)
     } 
+}
+
+function mostrarTrabajos(trabajos){
+    // Esto lo hago para evitar que se repitan los resultados en el html al dar varias veces click
+    while(resultado.firstChild){
+        resultado.removeChild(resultado.firstChild)
+    }
+    resultado.classList.add('row')
+    if(trabajos.length > 0){
+        trabajos.forEach(element => {
+            // este company le hago destructuring de trabajos que a su vez es lo que obtengo de data.contents
+            const { company,title, type, url } = element
+            
+            resultado.innerHTML += `
+                    <div class="bg-light p-6 m-1 rounded col-3">
+                        <h2 class="text-dark">${title}</h2>
+                        <p class="font-weight-bold">Empresa: <span class="font-weight-normal">${company}</span></p>
+                        <p class="font-weight-bold">Tipo de contrato: <span class="font-weight-normal">${type}</span></p>
+                        <a href="${url}" class="btn btn-info btn-lg active mb-2" role="button">Ver oferta</a>
+                    </div>
+            `
+        });
+    }
 }
