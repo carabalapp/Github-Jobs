@@ -26,13 +26,14 @@ function consultarAPI(buscar){
     axios.get(url)
     .then(respuesta => mostrarTrabajos(JSON.parse(respuesta.data.contents)))
 
+    spinner();
 }
 
 function mostrarAlerta(msg){
     const alerta = document.createElement('div')
     const alertaPrev = document.querySelector('.existe')
     if(!alertaPrev){
-        alerta.classList.add('bg-danger', 'mt-2', 'text-center', 'p-4', 'existe' )
+        alerta.classList.add('bg-danger', 'mt-2', 'text-center', 'rounded', 'existe' )
         alerta.textContent = msg;
         formulario.appendChild(alerta)
         setTimeout(() => {
@@ -53,13 +54,28 @@ function mostrarTrabajos(trabajos){
             const { company,title, type, url } = element
             
             resultado.innerHTML += `
-                    <div class="bg-light p-6 m-1 rounded col-3">
+                    <div class="bg-light p-6 m-1 rounded col-md-3" style="word-wrap: break-word;">
                         <h2 class="text-dark">${title}</h2>
                         <p class="font-weight-bold">Empresa: <span class="font-weight-normal">${company}</span></p>
                         <p class="font-weight-bold">Tipo de contrato: <span class="font-weight-normal">${type}</span></p>
-                        <a href="${url}" class="btn btn-info btn-lg active mb-2" role="button">Ver oferta</a>
+                        <a href="${url}" target="_blank" class="btn btn-info btn-lg active mb-2" role="button">Ver oferta</a>
                     </div>
             `
         });
+    }else{
+        mostrarAlerta('No se encontraron resultados para esta busqueda...')
     }
+}
+
+function spinner(){
+    resultado.innerHTML = `
+        <div class="text-center my-4">
+          <div class="spinner-border" role="status">
+              <span class="visually-hidden"></span>
+          </div>
+          <div>
+            <span class="visually-hidden">Buscando...</span>
+          </div>
+        </div>
+    `
 }
